@@ -1,0 +1,7 @@
+.custom-nav .dropdown-menu{
+    right: 0;
+    left: inherit;
+}
+header{
+    margin-bottom: 20px;
+}

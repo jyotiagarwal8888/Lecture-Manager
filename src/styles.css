@@ -1,0 +1,21 @@
+body{
+    background: url('./assets/images/background-image.jpg');
+}
+.register .register_title{
+    color: #fff;
+    font-size: 34px;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 50px 0px 20px;
+}
+.register label{
+    color: #fff;
+}
+.register input, .register input:focus, .register select, .register select:focus, .register select:disabled{
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+}
+.register select option{
+    color: #000;
+}
