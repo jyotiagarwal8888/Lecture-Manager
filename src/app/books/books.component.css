@@ -1,0 +1,67 @@
+.filter{
+    width: 25%;
+    padding-right: 30px;
+}
+.filter .filter-icon{
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    background: #3c2e87;
+    margin: 0px 0px 15px;
+    line-height: 100%;
+}
+.filter .filter-icon.sub-filter{
+    padding: 10px;
+    margin-top: 15px;
+}
+.filter label{
+    color: #fff;
+    font-size: 18px;
+    padding-left: 20px;
+}
+.filter .form-check-input{
+    display: none;
+}
+.filter .check-box{
+    position: absolute;
+    display: inline-block;
+    top: 6px;
+    left: 0px;
+    border: 1px solid #fff;
+    line-height: 100%;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+}
+.filter input[type="checkbox"]:checked + .check-box i{
+    font-size: 12px;
+    position: absolute;
+    left: 1px;
+    right: 0;
+    top: 1px;
+    display: inline-block;
+}
+.filter input[type="checkbox"] + .check-box i{
+    display: none;
+}
+.all-books{
+    width: 75%;
+    border-left: 2px solid #fff;
+}
+.all-books a{
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #fff;
+}
+.all-books a img{
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+}
+.all-books a .book-title{
+    padding: 10px 0px;
+    font-size: 20px;
+}

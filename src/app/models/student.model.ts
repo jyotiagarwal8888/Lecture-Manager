@@ -5,7 +5,7 @@ export class Student{
         public last_name: string,
         public email: string,
         public school_id: number, 
-        public class_name: string,
+        public class_id: number,
         public user_type: string,
         public gender: string
         ){}

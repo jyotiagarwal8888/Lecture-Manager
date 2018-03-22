@@ -3,7 +3,7 @@
         <div class="col-md-6 offset-md-3">
             <h1 class="register_title">Register Now</h1>
             <!-- <form (ngSubmit)="onRegister()" #f="ngForm"> -->
-            <form [formGroup] = "reg_form" (ngSubmit)="onRegister()">
+            <form [formGroup]="reg_form" (ngSubmit)="onRegister()">
                 <div>
                     <label for="">User Type* </label>
                 </div>
@@ -30,53 +30,88 @@
                 <div *ngIf="reg_form.get('user_type').invalid" class="help-block" style="color: red;">Please Select User Type.</div>
                 <div class="form-group" *ngIf="userSelected" formGroupName="userData">
                     <div class="form-group" *ngIf="userSelectedType == 'school'">
-                        <input type="text" formControlName="school_name" placeholder="Type your school name" class="form-control">
+                        <input type="text" formControlName="school_name" placeholder="Type your school name *" class="form-control">
+                        <span class="red" *ngIf="reg_form.get('userData.school_name').invalid && reg_form.get('userData.school_name').touched">School name is required.</span>
                     </div>
                     <div class="form-group" *ngIf="userSelectedType != 'school'">
                         <select formControlName="school_id" class="form-control" (change)="onSelectSchool($event)">
-                            <option value="0">Select School Name</option>
+                            <option value="">Select School Name</option>
                             <option *ngFor="let registered_school of registered_schools" [value]="registered_school.id">{{ registered_school.name}}</option>
                         </select>
+                        <span class="red" 
+                        *ngIf="reg_form.get('userData.school_id').invalid && reg_form.get('userData.school_id').touched">
+                        School Name is required.</span>
                     </div>
                     <div class="form-group" *ngIf="userSelectedType == 'teacher'">
                         <select formControlName="teacher_id" class="form-control" [attr.disabled]="!is_schoolSelected?'':null">
                             <option value="">Select Teacher</option>
                             <option *ngFor="let teacher of selected_teachers" [value]="teacher.teacher_id">{{ teacher.first_name+' '+teacher.last_name+' ( id: '+teacher.teacher_id+')'}}</option>
                         </select>
+                        <span class="red" 
+                        *ngIf="reg_form.get('userData.teacher_id').invalid && reg_form.get('userData.teacher_id').touched">
+                        Teacher is required.</span>
                     </div>
                     <div class="form-group" *ngIf="userSelectedType == 'student' || userSelectedType == 'parents'">
                         <select [attr.disabled]="!is_schoolSelected?'':null" formControlName="class_name" class="form-control" (change)="onSelectClass($event)">
-                            <option value="all">Select Class Name</option>
-                            <option value="nursrey">Nursrey</option>
-                            <option value="lkg">LKG</option>
-                            <option value="ukg">UKG</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
+                            <option value="">Select Class Name</option>
+                            <option value="{{class.class_id}}" *ngFor="let class of all_classes">{{class.class_name}}</option>
                         </select>
+                        <span class="red" 
+                        *ngIf="reg_form.get('userData.class_name').invalid && reg_form.get('userData.class_name').touched">
+                        Class Name is required.</span>
                     </div>
                     <div class="form-group" *ngIf="userSelectedType == 'student' || userSelectedType == 'parents'">
                         <select [attr.disabled]="!(is_classSelected && is_schoolSelected)?'':null" formControlName="student_id" class="form-control">
                             <option value="">Select Student Name (ID)</option>
                             <option *ngFor="let student of selected_students" [value]="selected_students.student_id">{{ student.first_name+' '+student.last_name+' ( id: '+student.student_id+')'}}</option>
                         </select>
+                        <span class="red" 
+                        *ngIf="reg_form.get('userData.student_id').invalid && reg_form.get('userData.student_id').touched">
+                        Student Name is required.</span>
                     </div>
                 </div>
                 <div class="form-group" *ngIf="userSelectedType == 'school' || userSelectedType == 'parents'">
                     <input type="text" formControlName="fname" class="form-control" placeholder="First Name*">
+                    <span class="red" 
+                    *ngIf="reg_form.get('fname').invalid && reg_form.get('fname').touched">
+                    First Name is required.</span>
                 </div>
                 <div class="form-group" *ngIf="userSelectedType == 'school' || userSelectedType == 'parents'">
                     <input type="text" formControlName="lname" class="form-control" placeholder="Last Name">
                 </div>
                 <div class="form-group" *ngIf="userSelectedType == 'school' || userSelectedType == 'parents'">
                     <input type="email" formControlName="email" class="form-control" placeholder="Email ID *">
+                    <span class="red" 
+                    *ngIf="reg_form.get('email').invalid 
+                    && reg_form.get('email').touched 
+                    && ( !reg_form.get('email').value)">
+                    Email ID is required.</span>
+                    <span class="red" 
+                    *ngIf="reg_form.get('email').invalid 
+                    && reg_form.get('email').touched
+                    && ( reg_form.get('email').value)">
+                    Email ID is not valid.</span>
                 </div>
                 <div class="form-group">
                     <input type="password" formControlName="password" class="form-control" placeholder="New Password*">
+                    <span class="red" 
+                    *ngIf="reg_form.get('password').invalid 
+                    && reg_form.get('password').touched">
+                    Password is required.</span>
                 </div>
                 <div class="form-group">
                     <input type="password" formControlName="c_password" class="form-control" placeholder="Confirm Password*">
+                    <span class="red" 
+                    *ngIf="reg_form.get('c_password').invalid 
+                    && reg_form.get('c_password').touched">
+                    Confirm Password is required.</span>
+                    <span class="red" 
+                    *ngIf="reg_form.get('password').valid 
+                    && reg_form.get('password').touched
+                    && reg_form.get('c_password').valid 
+                    && reg_form.get('c_password').touched 
+                    && (reg_form.get('password').value != reg_form.get('c_password').value)">
+                    Passwords are not matching.</span>
                 </div>
                 <button class="btn btn-primary form-control" type="submit" [disabled]="!reg_form.valid">Register</button>
             </form>

@@ -1,12 +1,17 @@
 body{
     background: url('./assets/images/background-image.jpg');
+    background-position: center;
+    background-attachment: fixed;
+}
+.custom-nav{
+    margin-bottom: 40px;
 }
 .register .register_title{
     color: #fff;
     font-size: 34px;
     text-align: center;
     text-transform: uppercase;
-    margin: 50px 0px 20px;
+    margin: 0px 0px 20px;
 }
 .register label{
     color: #fff;
